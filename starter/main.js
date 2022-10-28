@@ -14,8 +14,8 @@ const duration = document.getElementById('duration')
 const audioSource = audioCtx.createMediaElementSource(audioElement)
 
 window.addEventListener('load', () => {
-    time.textContent = audioElement.currentTime;
-    duration.textContent = audioElement.duration;
+    time.textContent = convertTime(audioElement.currentTime);
+    duration.textContent = convertTime(audioElement.duration);
 })
 
 playBtn.addEventListener('click', (event) => {
@@ -29,6 +29,17 @@ playBtn.addEventListener('click', (event) => {
         targetEl.setAttribute('class', 'paused')
     }
 });
+
+audioElement.addEventListener('timeupdate', () => {
+    seeker.value = audioElement.currentTime;
+    time.textContent = convertTime(audioElement.currentTime);
+})
+seeker.setAttribute('max', audioElement.duration);
+
+seeker.addEventListener('input', () => {
+    audioElement.currentTime = seeker.value;
+})
+
 
 const gainNode = audioCtx.createGain();
 
