@@ -46,6 +46,15 @@ button {
   padding: 8px 16px;
 }
 
+.controls-wrapper {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+}
+
 .controls-wrapper>input {
   flex: 1;
 }
