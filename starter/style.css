@@ -67,7 +67,7 @@ button {
   top: 50%;
   height: 48px;
   width: 48px;
-  background-image: url('/public/pause.svg');
+  background-image: url('/pause.svg');
 }
 
 .paused {
@@ -82,7 +82,7 @@ button {
   top: 50%;
   height: 48px;
   width: 48px;
-  background-image: url('public/play.svg');
+  background-image: url('/play.svg');
 }
 
 #title {

@@ -1,4 +1,5 @@
 import './style.css'
+import { convertTime } from './utils';
 
 const AudioContext = window.AudioContext ?? window.webkitAudioContext;
 const audioCtx = new AudioContext()
@@ -12,6 +13,11 @@ const duration = document.getElementById('duration')
 
 const audioSource = audioCtx.createMediaElementSource(audioElement)
 
+window.addEventListener('load', () => {
+    time.textContent = audioElement.currentTime;
+    duration.textContent = audioElement.duration;
+})
+
 playBtn.addEventListener('click', (event) => {
     const targetEl = event.target;
 
@@ -23,3 +29,11 @@ playBtn.addEventListener('click', (event) => {
         targetEl.setAttribute('class', 'paused')
     }
 });
+
+const gainNode = audioCtx.createGain();
+
+volumeSlider.addEventListener('input', () => {
+    gainNode.gain.value = volumeSlider.value;
+})
+
+audioSource.connect(gainNode).connect(audioCtx.destination)
